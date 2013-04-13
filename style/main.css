@@ -1,0 +1,79 @@
+﻿body, html {
+	margin: 0;
+	padding: 0;
+}
+body {
+	border-top: solid 4px #CEDF39;
+	font-family: "Courier New", Verdana, 宋体;
+	font-size: 12px;
+	background-color: #fff;
+	line-height: 20px;
+}
+body a {
+	text-decoration: none;
+	color: #CF5A00;
+}
+body a:hover {
+	text-decoration: underline;
+	color: #F4C610;
+}
+body a:visited {
+	text-decoration: none;
+}
+form, h1, h2, h3, h4, h5, h6, ul, ol, p {
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	font-size: 18px;
+	color: #A72D00;
+}
+h2 {
+	font-size: 14px;
+	border-bottom: solid 1px #A9B432;
+	margin: 5px 0 0 0;
+	padding: 3px 0;
+}
+h3 {
+	font-size: 12px;
+}
+ul {
+	list-style: none;
+}
+#copyright {
+	clear: both;
+	color: gray;
+	text-align: center;
+}
+.gray {
+	color: gray;
+}
+#main {
+	border: solid 1px #A9B432;
+	padding: 15px 10px;
+	margin: 0 auto;
+	width: 580px;
+	overflow: hidden;
+	min-height: 400px;
+}
+#main h2 {
+	background: #f0f0f0;
+	padding: 0 10px;
+	margin: 2em 0 0.5em 0;
+	line-height: 25px;
+	border: 0;
+	color: #446000;
+}
+#menu, #list {
+	width: 180px;
+}
+#menu {
+	float: left;
+}
+#list {
+	float: right;
+}
+#wrapper {
+	width: 980px;
+	margin: 30px auto 20px auto;
+}

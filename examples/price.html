@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta name="robots" content="all" />
+<meta name="copyright" content="127.0.0.1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, max-age=0, must-revalidate">
+<title>指数 - DrJs示例</title>
+<style type="text/css">
+@import "../style/main.css";
+</style>
+<script type="text/javascript" src="../lib/drjs.js"></script>
+<script type="text/javascript">
+var canvas,
+	g_lastPrice = 200,
+	g_time = 0,
+	g_width = 480,
+	g_height = 360,
+	g_step = 3;
+
+function init() {
+	canvas = new drjs.Canvas({width: g_width, height: g_height, borderWidth: 1}, "canvas1");
+
+	//画坐标
+	//纵坐标
+	canvas.draw("line", [[0, g_height - 100], [g_width, g_height - 100]], 0, 0, "#eee");
+	canvas.draw("line", [[0, g_height - 200], [g_width, g_height - 200]], 0, 0, "#ccc");
+	canvas.draw("line", [[0, g_height - 300], [g_width, g_height - 300]], 0, 0, "#eee");
+	canvas.draw("string", ["0"], 0, g_height - 20, "#ccc");
+	canvas.draw("string", ["100"], 0, g_height - 120, "#ccc");
+	canvas.draw("string", ["200"], 0, g_height - 220, "#ccc");
+	canvas.draw("string", ["300"], 0, g_height - 320, "#ccc");
+	//横坐标
+	canvas.draw("line", [[g_width * 0.25, g_height], [g_width * 0.25, 0]], 0, 0, "#eee");
+	canvas.draw("line", [[g_width * 0.5, g_height], [g_width * 0.5, 0]], 0, 0, "#ccc");
+	canvas.draw("line", [[g_width * 0.75, g_height], [g_width * 0.75, 0]], 0, 0, "#eee");
+	canvas.draw("string", ["6"], g_width * 0.25, g_height - 20, "#ccc");
+	canvas.draw("string", ["12"], g_width * 0.5, g_height - 20, "#ccc");
+	canvas.draw("string", ["18"], g_width * 0.75, g_height - 20, "#ccc");
+
+	//显示画布
+	canvas.show();
+	getData();
+}
+
+function getData() {
+	//例子中数据是随机产生的，实际应用中数据可从服务器通过Ajax获得
+	var sign = Math.random() > 0.5 ? 1 : -1,
+		price = g_lastPrice + sign * Math.random() * 3;
+	g_time ++;
+	showData(price);
+	if (g_time * g_step > g_width) return;
+	setTimeout(getData, 100);
+}
+
+function showData(price) {
+	var x0 = (g_time - 1) * g_step,
+		y0 = g_height - g_lastPrice,
+		x1 = g_time * g_step,
+		y1 = g_height - price;
+	canvas.draw("line", [[x0, y0], [x1, y1]], 0, 0, "#f00");
+	g_lastPrice = price;
+}
+
+window.onload = init;
+</script>
+</head>
+
+
+<body>
+	<div id="wrapper">
+		<div id="menu">
+			<h1>DrJs</h1>
+			<p class="gray">基于DOM和CSS的网页绘画</p>
+			<br />
+			<h2>链接</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="../webHelp">DrJs帮助手册</a></li>
+			</ul>
+		</div>
+		
+		<div id="list">
+			<h2>返回</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="javascript:history.go(-1)">返回上一页</a></li>
+			</ul>
+		</div>
+		
+		<div id="main">
+			<h1>示例：指数</h1>
+			<br />
+			<div id="canvas1" style="width:480px;height:360px;border:solid 1px #000;"></div>
+			<br />
+			<div id="info1"></div>
+			<br /><br />
+			<h2>说明</h2>
+			<p>
+				一个动态绘制指数的例子。
+			</p>
+		</div>
+		
+		<div id="copyright">
+			&copy; 2008, All rights reserved.
+		</div>
+	</div>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-307069-4");
+	pageTracker._trackPageview();
+	</script>
+
+	<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fda3df05e7b4804181e418033357048f7' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</body>
+</html>

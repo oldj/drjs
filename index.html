@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta name="robots" content="all" />
+<meta name="copyright" content="127.0.0.1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, max-age=0, must-revalidate">
+<title>DrJs - 基于DOM和CSS的网页绘画的JavaScript库</title>
+<style type="text/css">
+@import "style/main.css";
+</style>
+<script type="text/javascript" src="lib/drjs.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</head>
+
+
+<body>
+	<div id="wrapper">
+		<div id="menu">
+			<h1>DrJs</h1>
+			<p class="gray">基于DOM和CSS的网页绘画<br />当前版本：ver 0.2.1</p>
+			<br />
+			<a href="http://code.google.com/p/sansi/downloads/list">下载 DrJs.js</a><br />
+			<br /><br />
+			<h2>链接</h2>
+			<ul>
+				<li><a href="webhelp">DrJs帮助手册</a></li>
+				<li><a href="DrJs-Helper.chm">DrJs帮助手册下载</a>(chm)</li>
+				<li><a href="http://www.sansi.org">三思首页</a></li>
+			</ul>
+		</div>
+		
+		<div id="list">
+			<h2>示例</h2>
+			<ul>
+				<li><a href="examples/basicShapes.html">基本形状</a></li>
+				<li><a href="examples/mathFunctions.html">数学函数（振荡衰减函数）</a></li>
+				<li><a href="examples/chart.html">统计图表</a></li>
+				<li><a href="examples/cup.html">茶杯</a></li>
+				<li><a href="examples/chineseChess.html">中国象棋</a></li>
+				<li><a href="examples/price.html">动态指数</a></li>
+			</ul>
+		</div>
+		
+		<div id="main">
+			<h1>首页</h1><br />
+			<div id="canvas1" style="width:480px;height:360px;border:solid 1px #000;"></div>
+			<br />
+			<div id="info1"></div>
+			<br />
+			<p style="font-size:14px;font-weight:bold;">
+			嗨！欢迎访问DrJs主页！<br />
+			如果你能看到上面的图形（英文字母“DrJs”和一个笑脸），那么恭喜你，你的浏览器支持DrJs！
+			</p>
+			<br />
+			<h2><a name="whatis"></a>关于DrJs</h2>
+			<p>
+			· DrJs是一个基于DOM和CSS的网页绘图JavaScript框架，使用它，你可以轻松地在网页上绘制直线、多面形、椭圆、扇形等图形，你还可以使用它绘制直方图、折线图、饼图等统计图形，当然，如果你愿意，你还可以用它绘制出更多有趣的东西。<br /><br />
+			· 需要注意的是，DrJs并不是在网页上显示图形的最佳解决方案，也不可替代Flash、VML、SVG等技术，由于实现原理本身的限制，过度滥用可能会导致内存大量占用或浏览器崩溃。<br /><br />
+			· DrJs是三思开源项目的一部分，三思开源项目的地址为：<a href="http://code.google.com/p/sansi/">http://code.google.com/p/sansi/</a>。<br /><br />
+			</p>
+		</div>
+		
+		<div id="copyright">
+			&copy; 2008, All rights reserved.
+		</div>
+		
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		var pageTracker = _gat._getTracker("UA-307069-4");
+		pageTracker._trackPageview();
+		</script>
+	</div>
+
+	<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fda3df05e7b4804181e418033357048f7' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</body>
+</html>

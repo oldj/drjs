@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>工作原理</title>
+<meta name="GENERATOR" content="WinCHM">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+
+
+
+<link REL="StyleSheet">
+<style type="text/css">
+body {
+line-height:20px;
+}
+</style>
+<style type="text/css"> 
+<!-- 
+BODY {
+scrollbar-face-color:#DCDBD6;
+scrollbar-highlight-color:#DFDFDF;
+scrollbar-3dlight-color:#DCDBD6;
+scrollbar-darkshadow-color:#000000;
+scrollbar-shadow-color:#DFDFDF;
+scrollbar-arrow-color:#EFEFEF;
+scrollbar-track-color:#EFEFEF;
+}
+-->
+</style>
+
+
+</head>
+
+<body leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><script language="JavaScript" type="text/JavaScript">
+function syn(){
+ if(parent.nav.loaded){
+  parent.nav.selectNode(2);
+ }else{
+  setTimeout("syn()",500);
+}}
+if(parent!=self){
+  setTimeout("syn()",100);
+}else{
+  document.write('<BR><table width="35%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666"><tr><td align="center" bgcolor="#FFFFFF">');
+  document.write('<a href="../index.htm#page=工作原理.htm">Show Navigation Frame</a>'); 
+  document.write('</td></tr></table><BR>');
+}
+</script> 
+
+<TABLE style="WIDTH: 100%; HEIGHT: 29px" cellSpacing=0 cellPadding=0 
+width="100%" bgColor=#cedf39 border=0>
+  <TBODY>
+  <TR>
+    <TD width=5><FONT face="Courier New"></FONT></TD>
+    <TD><FONT face="Courier New"><IMG alt="" hspace=2 src="template/icon.gif" align=absMiddle>DrJs 帮助文档</FONT></TD>
+    <TD align=right width=60><FONT face="Courier New"></FONT></TD>
+    <TD width=12><FONT face="Courier New">&nbsp;</FONT></TD></TR></TBODY></TABLE>
+<DIV style="PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px"><FONT 
+face="Courier New"><FONT color=#a72d00 size=4><STRONG>工作原理</STRONG></FONT> 
+</FONT>
+<P>
+<DIV 
+style="PADDING-RIGHT: 2em; FONT-SIZE: 12px; FONT-FAMILY: Courier New">
+<P>DrJs的早期版本参考了<A href="http://www.walterzorn.com/jsgraphics/jsgraphics_e.htm" 
+target=_blank 
+alt="wz_jsgraphics">WZ_JSGraphics</A>，不过自从0.2版开始，DrJs采用了全新的思路及设计。</P>
+<P>&nbsp;</P>
+<P>无论是DrJs还是WZ_JSGraphics，最基本的原理都是生成若干个绝对定位（position: 
+absolute）的DOM元素（例如DIV）并对它们设置不同的位置来实现绘图，这与以前的像素图有一些类似。同时，DrJs和WZ_JSGraphics都秉承一个基本原则，即<STRONG>尽可能少生成DOM元素</STRONG>。</P>
+<P><IMG alt="" src="images/grids.gif" align=right>例如，要画一段圆弧，可以有如右图所示的三种方式，其中每一个格子代表一个DOM元素（如DIV）。最差的是左边的一种，它不但在边角处拖泥带水（这样图像会显得有明显的锯齿），而且使用了最多的DOM元素；中间一种则将边角处不必要的格子去掉了，但仍用了很多DOM元素；最好的是右边一种，它不但去掉了边角处不必要的格子，而且将格子进行了尽可能多的合并。</P>
+<P></P>
+<P>尽可能少生成DOM的好处是明显的，这样可以节约资源，同时加快显示速度。</P>
+<P>&nbsp;</P>
+<P><IMG alt="" src="images/oval.gif" align=left>关于图像填充，则是另外一种实现方法。例如左图是一个a = 100，b = 
+50的椭圆，从图中可以看到，它实际上是由若干矩形拼接而成的，类似的，其它填充图形，如实心多边形、实心扇形等都是由若干大小不能的矩形逼近拼接而成。这个思路来自于数学上的微积分思想。</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>另外，关于图形在画布上的定位，DrJs采用了类似于直角坐标系的方法。实际上它就是直角坐标系，但因为考虑到网页布局的特点，它的y轴是由上指向下方的。因此，画布中一个点(2, 
+3)的意思是它距离容器左上角的横向距离为2（像素），纵向距离为3（像素）。</P>
+<P>&nbsp;</P></DIV></FONT>
+<P></P><FONT color=#808080><FONT face="Courier New" size=2>
+<HR>
+Copyright&nbsp;(c) 2008, DrJs, sansi.org</FONT></DIV></FONT>
+</body>
+</html>

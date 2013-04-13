@@ -1,0 +1,291 @@
+<html>
+<head>
+<title>DrJs Helper</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css"> 
+<!-- 
+.selected {font-weight: normal;background-color: #E2E2E2;padding:0px,2px,0px,2px;}
+.unselected { font-weight: normal;padding:0px,2px,0px,2px;}
+.hand { cursor: hand; }
+.p {height: 16px;width: 16px;vertical-align: middle;border: 0;}
+div,body { font-family: Tahoma, Verdana; font-size: 11px; }
+A:link {text-decoration: none; color:#000000}
+A:visited {text-decoration: none; color: #000000}
+A:active {text-decoration: none; color: #000000 }
+A:hover {text-decoration: none; color: #FF0000 }
+
+-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var cl,pn,pm,bl;
+var path = 'icons/';
+var pos = 0;
+var icon;
+var tar = 'content';
+var display;
+var imgi;
+var AutoCollapse;
+var LastSelected = 0;
+var loaded = false;
+var max;
+var divlist;
+
+function SetEnv(v,a){
+
+if(v==0){ 
+	pn = [['daplus.gif','daminus.gif'],['tplus.gif','tminus.gif'],['uaplus.gif','uaminus.gif'],['splus.gif','sminus.gif']];
+	PreloadImg('downangle.gif','tshaped.gif','upangle.gif','sline.gif','daplus.gif','daminus.gif','tplus.gif','tminus.gif','uaplus.gif','uaminus.gif','splus.gif','sminus.gif','blank.gif','line.gif');
+}else{
+	pn = [['plus.gif','minus.gif']];
+	PreloadImg('plus.gif','minus.gif','blank.gif');
+
+}
+AutoCollapse = a;
+}
+
+ function PreloadImg(){
+if (document.images) { 
+	var imgs = PreloadImg.arguments; 
+	var pload = new Array();
+	for (var i=0; i<imgs.length; i++) { 
+		pload[i] = new Image; 
+		pload[i].src = path + imgs; 
+	} 
+} 
+ } 
+
+function get(o){
+var x;
+if(document.all) x=document.all[o]; 
+if(document.getElementById) x=document.getElementById(o);
+
+return x;
+}
+
+
+function pnImg(img){
+var i,j;
+for(i=0;i<=3;i++){
+	for(j=0;j<=1;j++){
+	if(img.substr(img.lastIndexOf('/') + 1)== pn[i][j]){
+		return i;
+	}
+	}
+}
+}
+function icon(img){
+var f;
+f = img.substr(img.lastIndexOf('/') + 1);
+if( f=='1.gif' || f=='2.gif'){
+	return ['1.gif','2.gif'];
+}
+if( f=='3.gif' || f=='4.gif'){
+	return ['3.gif','4.gif'];
+}
+if( f=='5.gif' || f=='6.gif'){
+	return ['5.gif','6.gif'];
+}
+if( f=='7.gif' || f=='8.gif'){
+	return ['7.gif','8.gif'];
+}
+return [f,f];
+}
+
+function show(id){
+get('d' + id).style.display='block';
+if(get('imgn' + id )) get('imgn' + id ).src= path + pn[pnImg(get('imgn' + id ).src)][1];
+get('img' + id ).src= path + icon(get('img' + id ).src)[1];
+
+}
+
+function collapse(id){
+get('d' + id ).style.display='none';
+if(get('imgn' + id )) get('imgn' + id ).src= path + pn[pnImg(get('imgn' + id ).src)][0];
+get('img' + id ).src= path + icon(get('img' + id ).src)[0];
+
+}
+
+function collapseAll(){
+var i;
+var o;
+for(i=0;i<=divlist.length-1;i++){
+	if(o=get('d' + divlist[i])){
+		if(o.style.display!='none'){ 
+			collapse(divlist[i]);
+		}
+	}
+}
+}
+
+function unselectAll(){
+var i=0;
+while(get("l" + i)){
+	get("l" + i).className = "unselected";
+	i++;
+}
+}
+
+function showParent(ele){
+var e;
+e = ele.parentNode;
+
+if(e==null) return;
+
+if(e.nodeName == 'DIV'){
+	if(e.id!='') show(e.id.substring(1,e.id.length ));
+}else if(e.nodeName == 'A'){
+
+}
+showParent(e);
+}
+
+function showNode(index){
+showParent(get("l" + index));
+LinkClick(index);
+}
+
+function selectNode(index){
+showParent(get("l" + index));
+LinkClick(index);
+}
+
+
+function NodeClick(id){
+if(get('d' + id ).style.display=='none'){
+	show(id);
+}else{
+	collapse(id);
+}
+return false;
+}
+
+function LinkDblClick(id){
+if(!AutoCollapse){
+	if(get('d' + id ).style.display=='none'){
+		show(id);
+	}else{
+		collapse(id);
+	}
+}
+return false;
+}
+
+function LinkClick(index,hasChild,r){
+if(AutoCollapse && hasChild){
+	if(get('d' + index ).style.display=='none'){
+		collapseAll()
+		showParent(get('l' + index));
+		show(index);
+	}else{
+		collapseAll()
+		showParent(get('l' + index));	
+		collapse(index);
+	}
+}
+get('l' + LastSelected).className = "unselected";
+get('l' + index).className = "selected";
+LastSelected = index;
+return r;
+}
+
+function body_onmousemove(event){
+if(typeof(document.body.scrollTop)!='undefined'){
+if(parseInt(event.clientX)<5){
+window.scroll(0,document.body.scrollTop);}}
+if(typeof(window.scrollY)!='undefined'){
+if(parseInt(event.clientX)<5){
+window.scrollTo(0,window.scrollY);}}
+}
+
+window.defaultStatus = '';
+
+//-->
+</SCRIPT>
+<style type="text/css"> 
+<!-- 
+BODY {
+scrollbar-face-color:#DCDBD6;
+scrollbar-highlight-color:#DFDFDF;
+scrollbar-3dlight-color:#DCDBD6;
+scrollbar-darkshadow-color:#000000;
+scrollbar-shadow-color:#DFDFDF;
+scrollbar-arrow-color:#EFEFEF;
+scrollbar-track-color:#EFEFEF;
+}
+-->
+</style>
+
+
+</head>
+
+<body bgcolor="#ffffff" leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" onmousemove="body_onmousemove(event);" onload="loaded = true;">
+<!--BEGINBAR-->
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+<tr align="center" bgcolor="#E1E1E1"> 
+<td width="50%"><font size="2"><strong>Contents</strong></font></td>
+<td width="50%"><font size="2"><a href="webhelpindex.htm">Index</a></font></td>
+</tr>
+</table>
+<br>
+<!--ENDBAR-->
+<div id="loading"><font color="#FF0000" size="1"> Loading table of contents... 
+</font><br><br></div>
+<script>SetEnv(0,false)</script><div><nobr><img src="icons/downangle.gif" class="p"><a href="scr/关于本书.htm" onclick="return LinkClick('0',false,true)" target="content" title=" 关于本书" onmousemove="window.status='关于本书'"><img src="icons/11.gif" class="p"> <span id="l0" class="unselected">关于本书</span></a></nobr></div>
+<div><nobr><img src="icons/tshaped.gif" class="p"><a href="scr/关于DrJs.htm" onclick="return LinkClick('1',false,true)" target="content" title=" 关于DrJs" onmousemove="window.status='关于DrJs'"><img src="icons/11.gif" class="p"> <span id="l1" class="unselected">关于DrJs</span></a></nobr></div>
+<div><nobr><img src="icons/tshaped.gif" class="p"><a href="scr/工作原理.htm" onclick="return LinkClick('2',false,true)" target="content" title=" 工作原理" onmousemove="window.status='工作原理'"><img src="icons/11.gif" class="p"> <span id="l2" class="unselected">工作原理</span></a></nobr></div>
+<div><nobr><img src="icons/tshaped.gif" class="p"><a href="scr/入门指南.htm" onclick="return LinkClick('3',false,true)" target="content" title=" 入门指南" onmousemove="window.status='入门指南'"><img src="icons/11.gif" class="p"> <span id="l3" class="unselected">入门指南</span></a></nobr></div>
+<div><nobr><a href="#" onClick="return NodeClick('4')"><img id="imgn4" src="icons/tplus.gif" class="p"></a><a href="scr/drjs对象.htm" onclick="return LinkClick('4',true,true)" onDblClick="return LinkDblClick('4')" target="content" title="drjs对象" onmousemove="window.status='drjs对象'"><img id="img4" src="icons/1.gif" class="p"> <span id="l4" class="unselected">drjs对象</span></a></nobr></div>
+<div id="d4" style="display:none"><div><nobr><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('5')"><img id="imgn5" src="icons/tplus.gif" class="p"></a><a href="scr/画布类(Canvas).htm" onclick="return LinkClick('5',true,true)" onDblClick="return LinkDblClick('5')" target="content" title="画布类(Canvas)" onmousemove="window.status='画布类(Canvas)'"><img id="img5" src="icons/1.gif" class="p"> <span id="l5" class="unselected">画布类(Canvas)</span></a></nobr></div>
+<div id="d5" style="display:none"><div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/container属性.htm" onclick="return LinkClick('6',false,true)" target="content" title=" 属性: container" onmousemove="window.status='属性: container'"><img src="icons/11.gif" class="p"> <span id="l6" class="unselected">属性: container</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/groups属性.htm" onclick="return LinkClick('7',false,true)" target="content" title=" 属性: groups" onmousemove="window.status='属性: groups'"><img src="icons/11.gif" class="p"> <span id="l7" class="unselected">属性: groups</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/items属性.htm" onclick="return LinkClick('8',false,true)" target="content" title=" 属性: items" onmousemove="window.status='属性: items'"><img src="icons/11.gif" class="p"> <span id="l8" class="unselected">属性: items</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/属性_ parent.htm" onclick="return LinkClick('9',false,true)" target="content" title=" 属性: parent" onmousemove="window.status='属性: parent'"><img src="icons/11.gif" class="p"> <span id="l9" class="unselected">属性: parent</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/shapes属性.htm" onclick="return LinkClick('10',false,true)" target="content" title=" 属性: shapes" onmousemove="window.status='属性: shapes'"><img src="icons/11.gif" class="p"> <span id="l10" class="unselected">属性: shapes</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/Canvas_ 方法_ chart().htm" onclick="return LinkClick('11',false,true)" target="content" title=" 方法: chart()" onmousemove="window.status='方法: chart()'"><img src="icons/11.gif" class="p"> <span id="l11" class="unselected">方法: chart()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ clear().htm" onclick="return LinkClick('12',false,true)" target="content" title=" 方法: clear()" onmousemove="window.status='方法: clear()'"><img src="icons/11.gif" class="p"> <span id="l12" class="unselected">方法: clear()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/count方法.htm" onclick="return LinkClick('13',false,true)" target="content" title=" 方法: count()" onmousemove="window.status='方法: count()'"><img src="icons/11.gif" class="p"> <span id="l13" class="unselected">方法: count()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/draw方法.htm" onclick="return LinkClick('14',false,true)" target="content" title=" 方法: draw()" onmousemove="window.status='方法: draw()'"><img src="icons/11.gif" class="p"> <span id="l14" class="unselected">方法: draw()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/Canvas_ 方法_ newColor().htm" onclick="return LinkClick('15',false,true)" target="content" title=" 方法: newColor()" onmousemove="window.status='方法: newColor()'"><img src="icons/11.gif" class="p"> <span id="l15" class="unselected">方法: newColor()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/Canvas_ 方法_ newItem().htm" onclick="return LinkClick('16',false,true)" target="content" title=" 方法: newItem()" onmousemove="window.status='方法: newItem()'"><img src="icons/11.gif" class="p"> <span id="l16" class="unselected">方法: newItem()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ show().htm" onclick="return LinkClick('17',false,true)" target="content" title=" 方法: show()" onmousemove="window.status='方法: show()'"><img src="icons/11.gif" class="p"> <span id="l17" class="unselected">方法: show()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/style方法.htm" onclick="return LinkClick('18',false,true)" target="content" title=" 方法: style()" onmousemove="window.status='方法: style()'"><img src="icons/11.gif" class="p"> <span id="l18" class="unselected">方法: style()</span></a></nobr></div>
+</div><div><nobr><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('19')"><img id="imgn19" src="icons/tplus.gif" class="p"></a><a href="scr/形状类(Shape).htm" onclick="return LinkClick('19',true,true)" onDblClick="return LinkDblClick('19')" target="content" title="形状类(Shape)" onmousemove="window.status='形状类(Shape)'"><img id="img19" src="icons/1.gif" class="p"> <span id="l19" class="unselected">形状类(Shape)</span></a></nobr></div>
+<div id="d19" style="display:none"><div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/属性_ canvas.htm" onclick="return LinkClick('20',false,true)" target="content" title=" 属性: canvas" onmousemove="window.status='属性: canvas'"><img src="icons/11.gif" class="p"> <span id="l20" class="unselected">属性: canvas</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/属性_ dots.htm" onclick="return LinkClick('21',false,true)" target="content" title=" 属性: dots" onmousemove="window.status='属性: dots'"><img src="icons/11.gif" class="p"> <span id="l21" class="unselected">属性: dots</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/属性_ name.htm" onclick="return LinkClick('22',false,true)" target="content" title=" 属性: name" onmousemove="window.status='属性: name'"><img src="icons/11.gif" class="p"> <span id="l22" class="unselected">属性: name</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/属性_ container.htm" onclick="return LinkClick('23',false,true)" target="content" title=" 属性: container" onmousemove="window.status='属性: container'"><img src="icons/11.gif" class="p"> <span id="l23" class="unselected">属性: container</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ addDots().htm" onclick="return LinkClick('24',false,true)" target="content" title=" 方法: addDots()" onmousemove="window.status='方法: addDots()'"><img src="icons/11.gif" class="p"> <span id="l24" class="unselected">方法: addDots()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ paint().htm" onclick="return LinkClick('25',false,true)" target="content" title=" 方法: paint()" onmousemove="window.status='方法: paint()'"><img src="icons/11.gif" class="p"> <span id="l25" class="unselected">方法: paint()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ remove().htm" onclick="return LinkClick('26',false,true)" target="content" title=" 方法: remove()" onmousemove="window.status='方法: remove()'"><img src="icons/11.gif" class="p"> <span id="l26" class="unselected">方法: remove()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ setLeft().htm" onclick="return LinkClick('27',false,true)" target="content" title=" 方法: setLeft()" onmousemove="window.status='方法: setLeft()'"><img src="icons/11.gif" class="p"> <span id="l27" class="unselected">方法: setLeft()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ setImg().htm" onclick="return LinkClick('28',false,true)" target="content" title=" 方法: setImg()" onmousemove="window.status='方法: setImg()'"><img src="icons/11.gif" class="p"> <span id="l28" class="unselected">方法: setImg()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ setText().htm" onclick="return LinkClick('29',false,true)" target="content" title=" 方法: setText()" onmousemove="window.status='方法: setText()'"><img src="icons/11.gif" class="p"> <span id="l29" class="unselected">方法: setText()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/方法_ setTop().htm" onclick="return LinkClick('30',false,true)" target="content" title=" 方法: setTop()" onmousemove="window.status='方法: setTop()'"><img src="icons/11.gif" class="p"> <span id="l30" class="unselected">方法: setTop()</span></a></nobr></div>
+</div><div><nobr><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('31')"><img id="imgn31" src="icons/tplus.gif" class="p"></a><a href="scr/项目类(Item).htm" onclick="return LinkClick('31',true,true)" onDblClick="return LinkDblClick('31')" target="content" title="项目类(Item)" onmousemove="window.status='项目类(Item)'"><img id="img31" src="icons/1.gif" class="p"> <span id="l31" class="unselected">项目类(Item)</span></a></nobr></div>
+<div id="d31" style="display:none"><div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/Item_ 属性_ canvas.htm" onclick="return LinkClick('32',false,true)" target="content" title=" 属性: canvas" onmousemove="window.status='属性: canvas'"><img src="icons/11.gif" class="p"> <span id="l32" class="unselected">属性: canvas</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/Item_ 属性_ name.htm" onclick="return LinkClick('33',false,true)" target="content" title=" 属性: name" onmousemove="window.status='属性: name'"><img src="icons/11.gif" class="p"> <span id="l33" class="unselected">属性: name</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/Item_ 属性_ shapes.htm" onclick="return LinkClick('34',false,true)" target="content" title=" 属性: shapes" onmousemove="window.status='属性: shapes'"><img src="icons/11.gif" class="p"> <span id="l34" class="unselected">属性: shapes</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/Item_ 属性_ container.htm" onclick="return LinkClick('35',false,true)" target="content" title=" 属性: container" onmousemove="window.status='属性: container'"><img src="icons/11.gif" class="p"> <span id="l35" class="unselected">属性: container</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ addShape().htm" onclick="return LinkClick('36',false,true)" target="content" title=" 方法: addShape()" onmousemove="window.status='方法: addShape()'"><img src="icons/11.gif" class="p"> <span id="l36" class="unselected">方法: addShape()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/方法_ locate().htm" onclick="return LinkClick('37',false,true)" target="content" title=" 方法: locate()" onmousemove="window.status='方法: locate()'"><img src="icons/11.gif" class="p"> <span id="l37" class="unselected">方法: locate()</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/Item_ 方法_ remove().htm" onclick="return LinkClick('38',false,true)" target="content" title=" 方法: remove()" onmousemove="window.status='方法: remove()'"><img src="icons/11.gif" class="p"> <span id="l38" class="unselected">方法: remove()</span></a></nobr></div>
+</div><div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/组类(Group).htm" onclick="return LinkClick('39',false,true)" target="content" title=" 组类(Group)" onmousemove="window.status='组类(Group)'"><img src="icons/1.gif" class="p"> <span id="l39" class="unselected">组类(Group)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/方法_ addFunc().htm" onclick="return LinkClick('40',false,true)" target="content" title=" 方法: addFunc()" onmousemove="window.status='方法: addFunc()'"><img src="icons/11.gif" class="p"> <span id="l40" class="unselected">方法: addFunc()</span></a></nobr></div>
+</div><div><nobr><a href="#" onClick="return NodeClick('41')"><img id="imgn41" src="icons/tplus.gif" class="p"></a><a href="scr/预置绘图函数.htm" onclick="return LinkClick('41',true,true)" onDblClick="return LinkDblClick('41')" target="content" title="预置绘图函数" onmousemove="window.status='预置绘图函数'"><img id="img41" src="icons/1.gif" class="p"> <span id="l41" class="unselected">预置绘图函数</span></a></nobr></div>
+<div id="d41" style="display:none"><div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/点.htm" onclick="return LinkClick('42',false,true)" target="content" title=" 点(dot)" onmousemove="window.status='点(dot)'"><img src="icons/11.gif" class="p"> <span id="l42" class="unselected">点(dot)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/直线(line).htm" onclick="return LinkClick('43',false,true)" target="content" title=" 直线(line)" onmousemove="window.status='直线(line)'"><img src="icons/11.gif" class="p"> <span id="l43" class="unselected">直线(line)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/折线(polyline).htm" onclick="return LinkClick('44',false,true)" target="content" title=" 折线(polyline)" onmousemove="window.status='折线(polyline)'"><img src="icons/11.gif" class="p"> <span id="l44" class="unselected">折线(polyline)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/多边形(polygon).htm" onclick="return LinkClick('45',false,true)" target="content" title=" 多边形(polygon)" onmousemove="window.status='多边形(polygon)'"><img src="icons/11.gif" class="p"> <span id="l45" class="unselected">多边形(polygon)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/矩形(rectangle).htm" onclick="return LinkClick('46',false,true)" target="content" title=" 矩形(rectangle)" onmousemove="window.status='矩形(rectangle)'"><img src="icons/11.gif" class="p"> <span id="l46" class="unselected">矩形(rectangle)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/椭圆(oval).htm" onclick="return LinkClick('47',false,true)" target="content" title=" 椭圆(oval)" onmousemove="window.status='椭圆(oval)'"><img src="icons/11.gif" class="p"> <span id="l47" class="unselected">椭圆(oval)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/扇形(arc).htm" onclick="return LinkClick('48',false,true)" target="content" title=" 扇形(arc)" onmousemove="window.status='扇形(arc)'"><img src="icons/11.gif" class="p"> <span id="l48" class="unselected">扇形(arc)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/字符串(string).htm" onclick="return LinkClick('49',false,true)" target="content" title=" 字符串(string)" onmousemove="window.status='字符串(string)'"><img src="icons/11.gif" class="p"> <span id="l49" class="unselected">字符串(string)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/图片(img).htm" onclick="return LinkClick('50',false,true)" target="content" title=" 图片(img)" onmousemove="window.status='图片(img)'"><img src="icons/11.gif" class="p"> <span id="l50" class="unselected">图片(img)</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/方框(box).htm" onclick="return LinkClick('51',false,true)" target="content" title=" 方框(box)" onmousemove="window.status='方框(box)'"><img src="icons/11.gif" class="p"> <span id="l51" class="unselected">方框(box)</span></a></nobr></div>
+</div><div><nobr><img src="icons/upangle.gif" class="p"><a href="scr/更新历史.htm" onclick="return LinkClick('52',false,true)" target="content" title=" 更新历史" onmousemove="window.status='更新历史'"><img src="icons/11.gif" class="p"> <span id="l52" class="unselected">更新历史</span></a></nobr></div>
+<script>divlist = [4,5,19,31,41]</script>
+<script>get('loading').style.display='none';</script>
+</body>
+</html>

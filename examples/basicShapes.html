@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta name="robots" content="all" />
+<meta name="copyright" content="127.0.0.1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, max-age=0, must-revalidate">
+<title>基本形状 - DrJs示例</title>
+<style type="text/css">
+@import "../style/main.css";
+</style>
+<script type="text/javascript" src="../lib/drjs.js"></script>
+<script type="text/javascript">
+function drjsDraw () {
+	var time0 = new Date();
+	var canvas = new drjs.Canvas({}, "canvas1");
+	canvas.draw("line", [[5, 35], [200, 300]]);
+	canvas.draw("polyline", [[74, 22], [105, 93], [143, 8], [209, 75], [255, 15], [331, 88], [397, 18], [435, 50]], 0, 0, null, false, 3);
+	canvas.draw("polygon", [[140, 90], [250, 100], [260, 177], [200, 210], [128, 180], [122, 133]])
+	canvas.draw("polygon", [[140, 90], [250, 100], [260, 177], [200, 210], [128, 180], [122, 133]], 150, 0, null, false, 2)
+	canvas.draw("polygon", [[140, 90], [250, 100], [260, 177], [200, 210], [128, 180], [122, 133]], 150, 120, null, true, 2)
+	canvas.draw("oval", [40, 20], 5, 190);
+	canvas.draw("arc", [80, 50, 170, 305], 5, 240);
+	canvas.draw("arc", [80, 50, -55, 170], 5, 250, null, true);
+	canvas.draw("string", ["直线"], 30, 50);
+	canvas.draw("string", ["折线"], 80, 20);
+	canvas.draw("string", ["多边形"], 150, 90);
+	canvas.draw("string", ["多边形2（粗边框）"], 300, 90);
+	canvas.draw("string", ["多边形3（实心）"], 300, 210);
+	canvas.draw("string", ["椭圆"], 10, 210);
+	canvas.draw("string", ["扇形"], 10, 260);
+	canvas.draw("string", ["扇形2（实心）"], 10, 310);
+	canvas.show();
+	var time1 = new Date();
+	
+	document.getElementById("info1").innerHTML = "<strong>Info:</strong> 使用了 " +
+		canvas.count() + " 个DOM节点，耗时 " + (time1 - time0) +
+		" 毫秒";
+}
+window.onload = drjsDraw;
+</script>
+</head>
+
+
+<body>
+	<div id="wrapper">
+		<div id="menu">
+			<h1>DrJs</h1>
+			<p class="gray">基于DOM和CSS的网页绘画</p>
+			<br />
+			<h2>链接</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="../webHelp">DrJs帮助手册</a></li>
+			</ul>
+		</div>
+		
+		<div id="list">
+			<h2>返回</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="javascript:history.go(-1)">返回上一页</a></li>
+			</ul>
+		</div>
+		
+		<div id="main">
+			<h1>示例：基本形状</h1>
+			<br />
+			<div id="canvas1" style="width:480px;height:360px;border:solid 1px #000;"></div>
+			<br />
+			<div id="info1"></div>
+			<br /><br />
+			<h2>说明</h2>
+			<p>
+				上图展示了若干使用DrJs绘制的基本形状。
+			</p>
+		</div>
+		
+		<div id="copyright">
+			&copy; 2008, All rights reserved.
+		</div>
+	</div>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-307069-4");
+	pageTracker._trackPageview();
+	</script>
+
+	<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fda3df05e7b4804181e418033357048f7' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</body>
+</html>

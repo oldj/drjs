@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta name="robots" content="all" />
+<meta name="copyright" content="127.0.0.1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, max-age=0, must-revalidate">
+<title>数学函数 - DrJs示例</title>
+<style type="text/css">
+@import "../style/main.css";
+</style>
+<script type="text/javascript" src="../lib/drjs.js"></script>
+<script type="text/javascript">
+function drjsDraw () {
+	var time0 = new Date();
+	var canvas = new drjs.Canvas({}, "canvas1");
+	canvas.draw({
+		f: function (x) {
+			return 180 + 150 * Math.sin(x / 5) * Math.exp(-0.005 * x);
+		},
+		interval: [0, 480]
+	});
+	canvas.draw("string", ["y = 150sin(x/5) * e^(-0.005x) + 180"],
+		50, 50);
+	canvas.show();
+	var time1 = new Date();
+	
+	document.getElementById("info1").innerHTML = "<strong>Info:</strong> 使用了 " +
+		canvas.count() + " 个DOM节点，耗时 " + (time1 - time0) +
+		" 毫秒";
+}
+window.onload = drjsDraw;
+</script>
+</head>
+
+
+<body>
+	<div id="wrapper">
+		<div id="menu">
+			<h1>DrJs</h1>
+			<p class="gray">基于DOM和CSS的网页绘画</p>
+			<br />
+			<h2>链接</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="../webHelp">DrJs帮助手册</a></li>
+			</ul>
+		</div>
+		
+		<div id="list">
+			<h2>返回</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="javascript:history.go(-1)">返回上一页</a></li>
+			</ul>
+		</div>
+		
+		<div id="main">
+			<h1>示例：数学函数</h1>
+			<br />
+			<div id="canvas1" style="width:480px;height:360px;border:solid 1px #000;"></div>
+			<br />
+			<div id="info1"></div>
+			<br /><br />
+			<h2>说明</h2>
+			<p>
+				上图展示了若干使用DrJs绘制的一个振荡衰减函数图形。
+			</p>
+		</div>
+		
+		<div id="copyright">
+			&copy; 2008, All rights reserved.
+		</div>
+	</div>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-307069-4");
+	pageTracker._trackPageview();
+	</script>
+
+	<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fda3df05e7b4804181e418033357048f7' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>方法: draw()</title>
+<meta name="GENERATOR" content="WinCHM">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+
+
+
+<link REL="StyleSheet">
+<style type="text/css">
+body {
+line-height:20px;
+}
+</style>
+<style type="text/css"> 
+<!-- 
+BODY {
+scrollbar-face-color:#DCDBD6;
+scrollbar-highlight-color:#DFDFDF;
+scrollbar-3dlight-color:#DCDBD6;
+scrollbar-darkshadow-color:#000000;
+scrollbar-shadow-color:#DFDFDF;
+scrollbar-arrow-color:#EFEFEF;
+scrollbar-track-color:#EFEFEF;
+}
+-->
+</style>
+
+
+</head>
+
+<body leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><script language="JavaScript" type="text/JavaScript">
+function syn(){
+ if(parent.nav.loaded){
+  parent.nav.selectNode(14);
+ }else{
+  setTimeout("syn()",500);
+}}
+if(parent!=self){
+  setTimeout("syn()",100);
+}else{
+  document.write('<BR><table width="35%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666"><tr><td align="center" bgcolor="#FFFFFF">');
+  document.write('<a href="../index.htm#page=draw方法.htm">Show Navigation Frame</a>'); 
+  document.write('</td></tr></table><BR>');
+}
+</script> 
+
+<TABLE style="WIDTH: 100%; HEIGHT: 29px" cellSpacing=0 cellPadding=0 
+width="100%" bgColor=#cedf39 border=0>
+  <TBODY>
+  <TR>
+    <TD width=5><FONT face="Courier New"></FONT></TD>
+    <TD><FONT face="Courier New"><IMG alt="" hspace=2 src="template/icon.gif" align=absMiddle>DrJs 帮助文档</FONT></TD>
+    <TD align=right width=60><FONT face="Courier New"></FONT></TD>
+    <TD width=12><FONT face="Courier New">&nbsp;</FONT></TD></TR></TBODY></TABLE>
+<DIV style="PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px"><FONT 
+face="Courier New"><FONT color=#a72d00 size=4><STRONG>方法: draw()</STRONG></FONT> 
+</FONT>
+<P>
+<DIV 
+style="PADDING-RIGHT: 2em; FONT-SIZE: 12px; FONT-FAMILY: Courier New">
+<P>生成一个新画布对象（canvas）后，可以调用其draw方法在画布上绘制相应图形，方法如下：</P>
+<P>
+<DIV 
+style="BORDER-RIGHT: #a9b432 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #a9b432 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 3px; BORDER-LEFT: #a9b432 1px solid; COLOR: #446000; PADDING-TOP: 3px; BORDER-BOTTOM: #a9b432 1px solid">canvas.draw(drawType, 
+parameter[, left[, top[, color[, fill[, stroke]]]]]);</DIV>
+<P>&nbsp;</P>
+<P><STRONG>参数：</STRONG></P>
+<P><EM>drawType</EM></P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>必填，表示绘图的类型，值可以为字符串、对象或数组。<BR>如果值为字符串，则表示根据内置的绘图函数绘画，内置的绘图函数包括<A href="预置绘图函数.htm">预置绘图函数</A>和<A href="方法_ addFunc().htm">自定义绘图函数</A>，例如"<A href="直线(line).htm">line</A>"表示画直线的函数。如果输入的字符串在预置绘图函数中找不到，将抛出错误，错误消息为"drawType 
+  Error!"。<BR><BR>如果值为对象，表示传入一个方程，draw方法将根据这个方程绘图。方程的格式为：<BR>{f: function(x) { 
+  ... return y}, interval: [x0, x1]}<BR>相当于方程：<BR>y = f(x), x∈[x0, 
+  x1]<BR><BR>如果值为数组，表示传入一个方程组，或者表示传入一个点阵。<BR>方程组中每个方程的定义见上面方程的格式，点阵的格式如下：<BR>[[x0, 
+  y0, width0, height0, color0], [x1, y1, width1, height1, color1], ..., [xn, yn, 
+  widthn, heightn, colorn]]<BR>其中参数color可选，如果省略，将使用默认的颜色。</P></BLOCKQUOTE>
+<P><EM>parameter</EM></P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>必填，表示给绘图方法传入的参数，具体格式因绘图方法的不同而不同。</P></BLOCKQUOTE>
+<P><EM>left</EM></P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>选填，数值，表示图像距离画布左边的距离。默认为0。</P></BLOCKQUOTE>
+<P><EM>top</EM></P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>选填，数值，表示图像距离画布顶部的距离。默认为0。</P></BLOCKQUOTE>
+<P><EM>color</EM></P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>选填，表示图像的默认颜色，与CSS定义颜色的方式相同。如未指定，将依次从预置的颜色中读取，如预置的颜色已被读完将随机生成一个新的颜色。以下都是合法的颜色：<BR>"red", 
+  "#ff0000", "#f00"</P></BLOCKQUOTE>
+<P><EM>fill</EM></P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>选填，布尔型变量，表示图像是否填充。默认为不填充。<BR>需要注意的是，并非所有形状都能填充成功，比如一个正弦函数的图形就无法填充。一般来说，封闭的形状（比如多边形、扇形等）可以填充。</P></BLOCKQUOTE>
+<P><EM>stroke</EM></P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>选填，数值，表示画笔的粗细。默认为1。当参数fill设为true时，此项无效。</P></BLOCKQUOTE>
+<P>&nbsp;</P>
+<P><STRONG>返回值：</STRONG></P>
+<P>一个形状（<A href="形状类(Shape).htm">Shape</A>）对象。</P>
+<P>&nbsp;</P>
+<P>参考：<A href="预置绘图函数.htm">预置绘图函数</A></P></DIV></FONT>
+<P></P><FONT color=#808080><FONT face="Courier New" size=2>
+<HR>
+Copyright&nbsp;(c) 2008, DrJs, sansi.org</FONT></DIV></FONT>
+</body>
+</html>

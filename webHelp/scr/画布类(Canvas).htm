@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>画布类(Canvas)</title>
+<meta name="GENERATOR" content="WinCHM">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+
+
+
+<link REL="StyleSheet">
+<style type="text/css">
+body {
+line-height:20px;
+}
+</style>
+<style type="text/css"> 
+<!-- 
+BODY {
+scrollbar-face-color:#DCDBD6;
+scrollbar-highlight-color:#DFDFDF;
+scrollbar-3dlight-color:#DCDBD6;
+scrollbar-darkshadow-color:#000000;
+scrollbar-shadow-color:#DFDFDF;
+scrollbar-arrow-color:#EFEFEF;
+scrollbar-track-color:#EFEFEF;
+}
+-->
+</style>
+
+
+</head>
+
+<body leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><script language="JavaScript" type="text/JavaScript">
+function syn(){
+ if(parent.nav.loaded){
+  parent.nav.selectNode(5);
+ }else{
+  setTimeout("syn()",500);
+}}
+if(parent!=self){
+  setTimeout("syn()",100);
+}else{
+  document.write('<BR><table width="35%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666"><tr><td align="center" bgcolor="#FFFFFF">');
+  document.write('<a href="../index.htm#page=画布类(Canvas).htm">Show Navigation Frame</a>'); 
+  document.write('</td></tr></table><BR>');
+}
+</script> 
+
+<TABLE style="WIDTH: 100%; HEIGHT: 29px" cellSpacing=0 cellPadding=0 
+width="100%" bgColor=#cedf39 border=0>
+  <TBODY>
+  <TR>
+    <TD width=5><FONT face="Courier New"></FONT></TD>
+    <TD><FONT face="Courier New"><IMG alt="" hspace=2 src="template/icon.gif" align=absMiddle>DrJs 帮助文档</FONT></TD>
+    <TD align=right width=60><FONT face="Courier New"></FONT></TD>
+    <TD width=12><FONT face="Courier New">&nbsp;</FONT></TD></TR></TBODY></TABLE>
+<DIV style="PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px"><FONT 
+face="Courier New"><FONT color=#a72d00 size=4><STRONG>画布类(Canvas)</STRONG></FONT> 
+</FONT>
+<P>
+<DIV 
+style="PADDING-RIGHT: 2em; FONT-SIZE: 12px; FONT-FAMILY: Courier New">
+<P>DrJs的绘图都是在画布（Canvas）对象上进行的，生成一个画布对象可以说是使用DrJs绘图的第一步。</P>
+<P><STRONG>用法：</STRONG></P>
+<P>
+<DIV 
+style="BORDER-RIGHT: #a9b432 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #a9b432 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 3px; BORDER-LEFT: #a9b432 1px solid; COLOR: #446000; PADDING-TOP: 3px; BORDER-BOTTOM: #a9b432 1px solid">var 
+canvas = new drjs.Canvas([parameter[, parent]]);</DIV>
+<P>&nbsp;</P>
+<P><STRONG>参数：</STRONG></P>
+<P><EM>parameter:</EM> </P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>可选，一个类似于CSS的对象。<BR>各项值都是可选：<BR>width: 画布宽度，number类型，单位为像素，默认值480<BR>height: 
+  画布高度，number类型，单位为像素，默认值360<BR>backgroundColor: 
+  画布背景色，默认为"#fff"<BR>backgroundImage: 画布背景图片，默认为 "none"<BR>borderWidth: 
+  画布边框宽度，默认为0<BR>borderStyle: 画布边框样式，默认为 "solid"<BR>borderColor: 画布边框颜色，默认为 
+  "#000"</P></BLOCKQUOTE>
+<P><EM>parent:</EM></P>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+  <P>可选，字符串或HTML文档对象<BR>表示画布将要添加到的元素<BR>如为字符串，则DrJs将查找id为parent的元素作为父元素<BR>如未指定则为body元素</P></BLOCKQUOTE>
+<P>&nbsp;</P>
+<P><STRONG>返回值：</STRONG></P>
+<P>一个Canvas对象。</P>
+<P>&nbsp;</P>
+<P><STRONG>示例：</STRONG></P>
+<P>var canvas = new drjs.Canvas({<BR>&nbsp;&nbsp;width: 
+480,<BR>&nbsp;&nbsp;height: 360,<BR>&nbsp;&nbsp;borderWidth: 1<BR>}, 
+"test");</P></DIV></FONT>
+<P></P><FONT color=#808080><FONT face="Courier New" size=2>
+<HR>
+Copyright&nbsp;(c) 2008, DrJs, sansi.org</FONT></DIV></FONT>
+</body>
+</html>

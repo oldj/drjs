@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta name="robots" content="all" />
+<meta name="copyright" content="127.0.0.1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, max-age=0, must-revalidate">
+<title>统计图表 - DrJs示例</title>
+<style type="text/css">
+@import "../style/main.css";
+</style>
+<script type="text/javascript" src="../lib/drjs.js"></script>
+<script type="text/javascript">
+
+var canvas;
+function init() {
+	canvas = new drjs.Canvas({height: 600}, "canvas1");
+	rndVal();
+}
+
+function btnDraw() {
+	var values = [],
+		v = document.getElementById("values").value.split(",");
+	
+	for (var i = 0; i < v.length; i ++) {
+		if (!isNaN(v[i]))
+			values.push(v[i] - 0);
+	}
+	
+	document.getElementById("values").value = values.join();
+	drjsDraw(values);
+}
+
+function rndVal() {
+	var values = [], len = 5 + Math.round(Math.random() * 10);
+	for (var i = 0; i < len; i ++)
+		values.push(Math.round(Math.random() * 100));
+	
+	document.getElementById("values").value = values.join();
+	drjsDraw(values);
+}
+
+function drjsDraw (values) {
+	var time0 = new Date();
+	canvas.clear();
+	canvas.chart("chart_bar", "bar", 320, 240, values, [], ["#39c"]).locate(20, 20);
+	canvas.chart("chart_polyline", "polyline", 320, 240, values, [], [], 2).locate(20, 20);
+	canvas.chart("chart_pie", "pie", 320, 240, values).locate(20, 300);
+	canvas.show();
+	var time1 = new Date();
+	
+	document.getElementById("info1").innerHTML = "<strong>Info:</strong> 使用了 " +
+		canvas.count() + " 个DOM节点，耗时 " + (time1 - time0) +
+		" 毫秒";
+}
+window.onload = init;
+</script>
+</head>
+
+
+<body>
+	<div id="wrapper">
+		<div id="menu">
+			<h1>DrJs</h1>
+			<p class="gray">基于DOM和CSS的网页绘画</p>
+			<br />
+			<h2>链接</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="../webHelp">DrJs帮助手册</a></li>
+			</ul>
+		</div>
+		
+		<div id="list">
+			<h2>返回</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="javascript:history.go(-1)">返回上一页</a></li>
+			</ul>
+		</div>
+		
+		<div id="main">
+			<h1>示例：统计图表</h1>
+			<br />
+			<div id="canvas1" style="width:480px;height:600px;border:solid 1px #000;"></div>
+			<br />
+			<div id="info1"></div>
+			<br />
+			值：<input type="text" size="40" id="values" /> 
+			<input type="button" id="btnDraw" value="绘制" onclick="btnDraw()" /> 
+			<input type="button" id="btnRnd" value="随机" onclick="rndVal()" />
+			<br /><br />
+			<h2>说明</h2>
+			<p>
+				上图展示了若干使用DrJs绘制的统计图表，包括立方图、折线图和饼图。
+			</p>
+		</div>
+		
+		<div id="copyright">
+			&copy; 2008, All rights reserved.
+		</div>
+	</div>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-307069-4");
+	pageTracker._trackPageview();
+	</script>
+
+	<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fda3df05e7b4804181e418033357048f7' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>入门指南</title>
+<meta name="GENERATOR" content="WinCHM">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+
+
+
+<link REL="StyleSheet">
+<style type="text/css">
+body {
+line-height:20px;
+}
+</style>
+<style type="text/css"> 
+<!-- 
+BODY {
+scrollbar-face-color:#DCDBD6;
+scrollbar-highlight-color:#DFDFDF;
+scrollbar-3dlight-color:#DCDBD6;
+scrollbar-darkshadow-color:#000000;
+scrollbar-shadow-color:#DFDFDF;
+scrollbar-arrow-color:#EFEFEF;
+scrollbar-track-color:#EFEFEF;
+}
+-->
+</style>
+
+
+</head>
+
+<body leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"><script language="JavaScript" type="text/JavaScript">
+function syn(){
+ if(parent.nav.loaded){
+  parent.nav.selectNode(3);
+ }else{
+  setTimeout("syn()",500);
+}}
+if(parent!=self){
+  setTimeout("syn()",100);
+}else{
+  document.write('<BR><table width="35%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666"><tr><td align="center" bgcolor="#FFFFFF">');
+  document.write('<a href="../index.htm#page=入门指南.htm">Show Navigation Frame</a>'); 
+  document.write('</td></tr></table><BR>');
+}
+</script> 
+
+<TABLE style="WIDTH: 100%; HEIGHT: 29px" cellSpacing=0 cellPadding=0 
+width="100%" bgColor=#cedf39 border=0>
+  <TBODY>
+  <TR>
+    <TD width=5><FONT face="Courier New"></FONT></TD>
+    <TD><FONT face="Courier New"><IMG alt="" hspace=2 src="template/icon.gif" align=absMiddle>DrJs 帮助文档</FONT></TD>
+    <TD align=right width=60><FONT face="Courier New"></FONT></TD>
+    <TD width=12><FONT face="Courier New">&nbsp;</FONT></TD></TR></TBODY></TABLE>
+<DIV style="PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px"><FONT 
+face="Courier New"><FONT color=#a72d00 size=4><STRONG>入门指南</STRONG></FONT> 
+</FONT>
+<P>
+<DIV 
+style="PADDING-RIGHT: 2em; FONT-SIZE: 12px; FONT-FAMILY: Courier New">
+<P>DrJs的使用非常简单。</P>
+<P>要在页面中使用DrJs，首先要将其包含到页面中，比如：</P>
+<P>
+<DIV 
+style="BORDER-RIGHT: #a9b432 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #a9b432 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 3px; BORDER-LEFT: #a9b432 1px solid; COLOR: #446000; PADDING-TOP: 3px; BORDER-BOTTOM: #a9b432 1px solid">&lt;script 
+type="text/javascript" src="js/drjs.js"&gt;&lt;/script&gt;</DIV>
+<P>接下来，需要先生成一个画布（<A href="画布类(Canvas).htm">Canvas</A>）对象：</P>
+<P>
+<DIV 
+style="BORDER-RIGHT: #a9b432 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #a9b432 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 3px; BORDER-LEFT: #a9b432 1px solid; COLOR: #446000; PADDING-TOP: 3px; BORDER-BOTTOM: #a9b432 1px solid">var 
+canvas = new drjs.Canvas({}, "canvasParentNode");</DIV>
+<P>有了画布对象，就可以使用<A href="draw方法.htm">draw</A>方法在这个画布对象上开始画图了，比如：</P>
+<P>
+<DIV 
+style="BORDER-RIGHT: #a9b432 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #a9b432 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 3px; BORDER-LEFT: #a9b432 1px solid; COLOR: #446000; PADDING-TOP: 3px; BORDER-BOTTOM: #a9b432 1px solid"><FONT 
+color=#008000><FONT color=#008000>//画一条直线，这条直线的两个端点坐标为(5, 35)、(200, 
+300)</FONT><BR></FONT>canvas.draw("line", [[5, 35], [200, 300]]);<BR><BR><FONT 
+color=#008000>//画一个椭圆，这个椭圆的x半径为40，y半径为20，椭圆距容器左上角距离为(5, 
+190)<BR></FONT>canvas.draw("oval", [40, 20], 5, 190);</DIV>
+<P>画好图像之后，需要调用<A href="方法_ show().htm">show</A>方法才能将画布对象添加到相应的DOM节点：</P>
+<P>
+<DIV 
+style="BORDER-RIGHT: #a9b432 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #a9b432 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 3px; BORDER-LEFT: #a9b432 1px solid; COLOR: #446000; PADDING-TOP: 3px; BORDER-BOTTOM: #a9b432 1px solid">canvas.show();</DIV>
+<P>当然，在调用过show方法后，你还可以继续使用draw方法在这个画布上添加新的图形。</P>
+<P>最后，如果你需要清除画布，可以调用<A href="方法_ clear().htm">clear</A>方法：</P>
+<P>
+<DIV 
+style="BORDER-RIGHT: #a9b432 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #a9b432 1px solid; PADDING-LEFT: 10px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 3px; BORDER-LEFT: #a9b432 1px solid; COLOR: #446000; PADDING-TOP: 3px; BORDER-BOTTOM: #a9b432 1px solid">canvas.clear();</DIV>
+<P>这样，画布上所有的图像都将被清除，您可以在上面重新画新的图像。</P></DIV></FONT>
+<P></P><FONT color=#808080><FONT face="Courier New" size=2>
+<HR>
+Copyright&nbsp;(c) 2008, DrJs, sansi.org</FONT></DIV></FONT>
+</body>
+</html>

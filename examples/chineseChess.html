@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta name="robots" content="all" />
+<meta name="copyright" content="127.0.0.1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, max-age=0, must-revalidate">
+<title>中国象棋 - DrJs示例</title>
+<style type="text/css">
+@import "../style/main.css";
+</style>
+<script type="text/javascript" src="../lib/drjs.js"></script>
+<script type="text/javascript">
+function drjsDraw () {
+	var time0 = new Date();
+	var canvas = new drjs.Canvas({height: 480}, "canvas1");
+	
+	//画棋盘
+	canvas.newItem("chessBoard");	//生成棋盘Item
+	canvas.items["chessBoard"].addShape(
+		canvas.draw("box", [320, 360, {borderWidth: "2px", backgroundColor: "#eee"}], -2, -2)
+	);
+	for (var i = 1; i <= 8; i ++) {
+		canvas.items["chessBoard"].addShape([
+			canvas.draw("line", [[i * 40, 0], [i * 40, 360]], 0, 0, "#000"),
+			canvas.draw("line", [[0, i * 40], [320, i * 40]], 0, 0, "#000")
+		]);
+	}
+	canvas.items["chessBoard"].addShape([
+		canvas.draw("box", [320, 40, {borderWidth: 0, backgroundColor: "#fff"}], -1, 160),
+		canvas.draw("line", [[120, 0], [200, 80]], 0, 0, "#000"),
+		canvas.draw("line", [[200, 0], [120, 80]], 0, 0, "#000"),
+		canvas.draw("line", [[120, 280], [200, 360]], 0, 0, "#000"),
+		canvas.draw("line", [[200, 280], [120, 360]], 0, 0, "#000")
+	]);
+	canvas.items["chessBoard"].locate(50, 50);	//棋盘左上角偏移
+
+	//画棋子
+	var chessman = ["兵", "兵", "兵", "兵", "兵", "炮", "炮", "车", "马", "相", "士", "将", "士", "相", "马", "车"],
+		chessmanPos_red = [[0, 6], [2, 6], [4, 6], [6, 6], [8, 6], [1, 7], [7, 7],
+			[0, 9], [1, 9], [2, 9], [3, 9], [4, 9], [5, 9], [6, 9], [7, 9], [8, 9]],	//红棋子的位置
+		chessmanPos_black = [[0, 3], [2, 3], [4, 3], [6, 3], [8, 3], [1, 2], [7, 2],
+			[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0]];	//黑棋子的位置
+	for (i = 0; i < 16; i ++) {
+		//画红棋
+		canvas.newItem("chessman_red_" + i).addShape([
+			canvas.draw("oval", [18, 18], 2, 2, "#f00", true),
+			canvas.draw("string", [chessman[i], {fontSize: "20px"}], 10, 10, "#fff")
+		]).locate(chessmanPos_red[i][0] * 40 + 30, chessmanPos_red[i][1] * 40 + 30);
+		
+		//画黑棋
+		canvas.newItem("chessman_black_" + i).addShape([
+			canvas.draw("oval", [18, 18], 2, 2, "#000", true),
+			canvas.draw("string", [chessman[i], {fontSize: "20px"}], 10, 10, "#fff")
+		]).locate(chessmanPos_black[i][0] * 40 + 30, chessmanPos_black[i][1] * 40 + 30);
+	}
+	
+	canvas.show();
+	var time1 = new Date();
+	
+	document.getElementById("info1").innerHTML = "<strong>Info:</strong> 使用了 " +
+		canvas.count() + " 个DOM节点，耗时 " + (time1 - time0) +
+		" 毫秒";
+}
+window.onload = drjsDraw;
+</script>
+</head>
+
+
+<body>
+	<div id="wrapper">
+		<div id="menu">
+			<h1>DrJs</h1>
+			<p class="gray">基于DOM和CSS的网页绘画</p>
+			<br />
+			<h2>链接</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="../webHelp">DrJs帮助手册</a></li>
+			</ul>
+		</div>
+		
+		<div id="list">
+			<h2>返回</h2>
+			<ul>
+				<li><a href="../index.html">首页</a></li>
+				<li><a href="javascript:history.go(-1)">返回上一页</a></li>
+			</ul>
+		</div>
+		
+		<div id="main">
+			<h1>示例：中国象棋</h1>
+			<br />
+			<div id="canvas1" style="width:480px;height:480px;border:solid 1px #000;"></div>
+			<br />
+			<div id="info1"></div>
+			<br /><br />
+			<h2>说明</h2>
+			<p>
+				一个中国象棋棋盘和棋子的例子。本例不适用于IE 5.5-。
+			</p>
+		</div>
+		
+		<div id="copyright">
+			&copy; 2008, All rights reserved.
+		</div>
+	</div>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-307069-4");
+	pageTracker._trackPageview();
+	</script>
+
+	<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fda3df05e7b4804181e418033357048f7' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</body>
+</html>
